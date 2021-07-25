@@ -2,7 +2,6 @@ import React from "react";
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import { TextField, Button, Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 
 export default class CreatePosts extends Component {
   constructor(props) {
@@ -10,6 +9,7 @@ export default class CreatePosts extends Component {
     this.state = {
       title: "",
       content: "",
+      posts: [],
     };
   }
 
@@ -24,12 +24,22 @@ export default class CreatePosts extends Component {
       content: el.target.value,
     });
   };
-
+  componentDidMount() {
+    const post = JSON.parse(localStorage.getItem("form"));
+    console.log(post);
+    this.setState({
+      posts: post,
+    });
+  }
   onSubmitHandler = (e) => {
     e.preventDefault();
-    const { title, content } = this.state;
-    let form = { title, content };
-    localStorage.setItem("form", JSON.stringify(form));
+    const { title, content, posts } = this.state;
+    let obj = {
+      title,
+      content,
+    };
+    posts.push(obj);
+    localStorage.setItem("form", JSON.stringify(posts));
   };
 
   render() {
@@ -63,7 +73,12 @@ export default class CreatePosts extends Component {
           justifyContent="center"
           alignItems="center"
         >
-          <TextField id="standard-basic" label="Content" />
+          <TextField
+            onChange={this.handleOnchangeContent}
+            value={this.state.content}
+            id="standard-basic"
+            label="Content"
+          />
         </Grid>
         <Grid
           container

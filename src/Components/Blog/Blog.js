@@ -1,6 +1,7 @@
 import React from "react";
-import CreatePosts from "../CreatePosts/CreatePosts";
 import { Component } from "react";
+import Posts from "../Posts/posts";
+import style from "./Blog.Module.css";
 
 export default class Blog extends Component {
   constructor(props) {
@@ -10,8 +11,6 @@ export default class Blog extends Component {
   }
 
   render() {
-    const form = JSON.parse(localStorage.getItem("form"));
-
-    return <h1>{form.title}</h1>;
+    return <div className={style.posts}>{<Posts />}</div>;
   }
 }
