@@ -28,7 +28,7 @@ export default class CreatePosts extends Component {
     const post = JSON.parse(localStorage.getItem("form"));
     console.log(post);
     this.setState({
-      posts: post,
+      posts: post || [],
     });
   }
   onSubmitHandler = (e) => {
@@ -39,6 +39,7 @@ export default class CreatePosts extends Component {
       content,
     };
     posts.push(obj);
+    console.log(obj);
     localStorage.setItem("form", JSON.stringify(posts));
   };
 

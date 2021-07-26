@@ -7,8 +7,11 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { CardMedia } from "@material-ui/core";
-import { Avatar, FormHelperText, Grid } from "@material-ui/core";
-import { grid } from "@material-ui/system";
+import { Avatar, Grid } from "@material-ui/core";
+import DeleteIcon from "@material-ui/icons/Delete";
+import { IconButton } from "@material-ui/core";
+
+// import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles({
   root: {
@@ -25,42 +28,57 @@ export default function Posts(params) {
   const classes = useStyles();
   console.log();
   return (
-    <div>
-      {form.map((posts) => (
-        <Card className={classes.root}>
-          <Grid container direction="column">
-            <CardActionArea>
-              {
-                <CardMedia
-                  className={classes.media}
-                  title="Contemplative Reptile"
-                />
-              }
-              {
-                <Avatar className={classes.orange}>
-                  {posts.title ? posts.title[0].toUpperCase() : null}
-                </Avatar>
-              }
-              {new Date().toLocaleTimeString()}
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {posts.title}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  {posts.content}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <Grid container direction="row-reverse">
-                <Button size="small" color="primary">
-                  Learn More
-                </Button>
+    <>
+      {form ? (
+        <Grid container direction="column-reverse">
+          {form.map((posts) => (
+            <Card className={classes.root}>
+              <Grid container direction="column">
+                <CardActionArea>
+                  {
+                    <CardMedia
+                      className={classes.media}
+                      title="Contemplative Reptile"
+                    />
+                  }
+                  {
+                    <Avatar className={classes.orange}>
+                      {posts.title ? posts.title[0].toUpperCase() : null}
+                    </Avatar>
+                  }
+
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {posts.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      {posts.content}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions>
+                  <IconButton
+                    // onClick={}
+                    aria-label="delete"
+                    size="large"
+                  >
+                    <DeleteIcon fontSize="inherit" />
+                  </IconButton>
+                  <Grid container direction="row-reverse">
+                    <Button size="small" color="primary">
+                      Learn More
+                    </Button>
+                  </Grid>
+                </CardActions>
               </Grid>
-            </CardActions>
-          </Grid>
-        </Card>
-      ))}
-    </div>
+            </Card>
+          ))}
+        </Grid>
+      ) : null}
+    </>
   );
 }
