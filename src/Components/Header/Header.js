@@ -3,6 +3,7 @@ import styles from "./Header.Module.css";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import CreatePosts from "../CreatePosts/CreatePosts";
 import Blog from "../Blog/Blog";
+import LogIn from "../../Pages/LogIn/Login";
 
 export default function Header(params) {
   return (
@@ -31,7 +32,7 @@ export default function Header(params) {
           <CreatePosts />
         </Route>
         <Route path="/LogIn">
-          <h2>bbbbb</h2>
+          <LogIn />
         </Route>
       </Switch>
     </Router>
