@@ -2,6 +2,7 @@ import React from "react";
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import { TextField, Button, Grid } from "@material-ui/core";
+import LogIn from "../../Pages/LogIn/Login";
 
 export default class CreatePosts extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ export default class CreatePosts extends Component {
           justifyContent="center"
           alignItems="center"
         >
-          <h2>Tell us your story</h2>
+          <h2>{LogIn.id}</h2>
         </Grid>
         <Grid
           container
