@@ -1,8 +1,9 @@
 import React from "react";
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import { TextField, Button, Grid } from "@material-ui/core";
+import { TextField, Button, Grid, Container } from "@material-ui/core";
 import LogIn from "../../Pages/LogIn/Login";
+import { style } from "@material-ui/system";
 
 export default class CreatePosts extends Component {
   constructor(props) {
@@ -51,22 +52,18 @@ export default class CreatePosts extends Component {
 
   render() {
     return (
-      <Grid>
+      <Container maxWidth="sm">
         <Grid
           container
           direction="row"
           justifyContent="center"
           alignItems="center"
         >
-          <h2>{LogIn.id}</h2>
+          <h2>Create Your Post</h2>
         </Grid>
-        <Grid
-          container
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Grid>
           <TextField
+            style={{ width: "100%", marginTop: "20px" }}
             onChange={this.handleOnchangeTitle}
             type="text"
             value={this.state.title}
@@ -74,13 +71,9 @@ export default class CreatePosts extends Component {
             label="Title"
           />
         </Grid>
-        <Grid
-          container
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Grid>
           <TextField
+            style={{ width: "100%", marginTop: "20px" }}
             onChange={this.handleOnchangeContent}
             value={this.state.content}
             id="standard-basic"
@@ -94,14 +87,17 @@ export default class CreatePosts extends Component {
           alignItems="center"
         >
           <Button
+            style={{ backgroundColor: "black", marginTop: "20px" }}
             onClick={this.onSubmitHandler}
             variant="outlined"
             color="primary"
           >
-            <Link to="/">click</Link>
+            <Link style={{ textDecoration: "none", color: "white" }} to="/">
+              click
+            </Link>
           </Button>
         </Grid>
-      </Grid>
+      </Container>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField, Grid, Button } from "@material-ui/core";
+import { TextField, Grid, Button, Container } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 export default class LogIn extends React.Component {
@@ -77,8 +77,8 @@ export default class LogIn extends React.Component {
     const { name, pass } = this.state.inputsValue;
 
     return (
-      <div>
-        <h3>
+      <Container maxWidth="sm">
+        {/* <h3>
           CurrentUser
           {this.state.currentUser
             ? this.state.currentUser.name
@@ -92,14 +92,17 @@ export default class LogIn extends React.Component {
               </h2>
             );
           })}
-        </div>
+        </div> */}
         <Grid
+          style={{ fontSize: "30px" }}
           container
           direction="row"
           justifyContent="center"
           alignItems="center"
         >
+          Registration
           <TextField
+            style={{ width: "100%", marginTop: "20px" }}
             onChange={(e) => this.inputsHandler(e, "name")}
             placeholder="enter name"
             value={this.state.username}
@@ -115,6 +118,7 @@ export default class LogIn extends React.Component {
           alignItems="center"
         >
           <TextField
+            style={{ width: "100%", marginTop: "20px" }}
             onChange={(e) => this.inputsHandler(e, "pass")}
             placeholder="enter password"
             value={this.state.password}
@@ -130,14 +134,20 @@ export default class LogIn extends React.Component {
           alignItems="center"
         >
           <Button
+            style={{
+              marginTop: "20px",
+              backgroundColor: "black",
+              color: "white",
+            }}
             onClick={() => this.createUserHandler(name, pass)}
             variant="outlined"
             color="primary"
           >
+            LogIn
             {/* <Link to="CreatePage">logIn</Link> */}
           </Button>
         </Grid>
-      </div>
+      </Container>
     );
   }
 }

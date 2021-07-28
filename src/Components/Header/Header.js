@@ -10,15 +10,18 @@ export default function Header(params) {
     <Router>
       <header className={styles.header}>
         <div className={styles.posts}>
-          <Link to="/">
+          <Link style={{ color: "white", textDecoration: "none" }} to="/">
             <span>Blog</span>
           </Link>
-          <Link to="CreatePage">
+          <Link
+            style={{ color: "white", textDecoration: "none" }}
+            to="CreatePage"
+          >
             <span>Create Post</span>
           </Link>
         </div>
         <div className={styles.logIn}>
-          <Link to="LogIn">
+          <Link style={{ color: "white", textDecoration: "none" }} to="LogIn">
             <span>LogIn</span>
           </Link>
         </div>

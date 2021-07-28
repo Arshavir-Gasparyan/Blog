@@ -1,7 +1,7 @@
 .header{
     font-size: 32px;
     color: white;
-    background-color: #0000ff;
+    background-color: black;
     display: flex;
     padding: 20px;
     justify-content: space-between;
