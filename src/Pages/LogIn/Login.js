@@ -1,15 +1,16 @@
 import React from "react";
 import { TextField, Grid, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import NewId from "./GetUniqueId";
 
 export default class LogIn extends React.Component {
-  static id = 1;
+  static id = +localStorage.getItem("currentId") || 1;
   constructor(props) {
     super(props);
     this.state = {
       posts: [],
-      users: [],
+      users: localStorage.getItem("users")
+        ? JSON.parse(localStorage.getItem("users"))
+        : [],
       comments: [],
       currentUser: false,
       inputsValue: {
@@ -20,7 +21,7 @@ export default class LogIn extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state.users, this.state.currentUser);
+    // console.log(this.state.users, this.state.currentUser);
   }
 
   createUserHandler = (name, pass) => {
@@ -44,6 +45,8 @@ export default class LogIn extends React.Component {
         id: user.id,
       };
     }
+    localStorage.setItem("currentId", LogIn.id);
+    localStorage.setItem("users", JSON.stringify(newUsers));
     this.setState({
       users: newUsers,
       currentUser,
@@ -90,7 +93,6 @@ export default class LogIn extends React.Component {
             );
           })}
         </div>
-        <h2></h2>
         <Grid
           container
           direction="row"

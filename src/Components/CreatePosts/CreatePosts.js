@@ -10,6 +10,7 @@ export default class CreatePosts extends Component {
     this.state = {
       title: "",
       content: "",
+      id: "",
       posts: [],
     };
   }
@@ -17,6 +18,7 @@ export default class CreatePosts extends Component {
   handleOnchangeTitle = (el) => {
     this.setState({
       title: el.target.value,
+      id: Math.random(),
     });
   };
 
@@ -34,11 +36,14 @@ export default class CreatePosts extends Component {
   }
   onSubmitHandler = (e) => {
     e.preventDefault();
-    const { title, content, posts } = this.state;
+
+    const { title, content, posts, id } = this.state;
     let obj = {
       title,
       content,
+      id,
     };
+
     posts.push(obj);
     console.log(obj);
     localStorage.setItem("form", JSON.stringify(posts));
