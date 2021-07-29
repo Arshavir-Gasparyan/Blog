@@ -1,6 +1,5 @@
 import React from "react";
 import { TextField, Grid, Button, Container } from "@material-ui/core";
-import { Link } from "react-router-dom";
 
 export default class LogIn extends React.Component {
   static id = +localStorage.getItem("currentId") || 1;

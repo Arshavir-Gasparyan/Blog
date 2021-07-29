@@ -37,9 +37,12 @@ export default class Posts extends React.Component {
 
   handleClick = (id) => {
     const newPosts = this.state.form.filter((post) => post.id !== id);
+
     this.setState({
       form: newPosts,
     });
+    localStorage.setItem("form", JSON.stringify(newPosts));
+    console.log(this.state.form);
   };
   render() {
     return (
