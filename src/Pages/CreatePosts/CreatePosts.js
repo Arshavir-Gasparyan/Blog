@@ -2,8 +2,6 @@ import React from "react";
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import { TextField, Button, Grid, Container } from "@material-ui/core";
-import LogIn from "../../Pages/LogIn/Login";
-import { style } from "@material-ui/system";
 
 export default class CreatePosts extends Component {
   constructor(props) {
@@ -37,12 +35,13 @@ export default class CreatePosts extends Component {
   }
   onSubmitHandler = (e) => {
     e.preventDefault();
-
+    const currentId = JSON.parse(localStorage.getItem("currentId"));
     const { title, content, posts, id } = this.state;
     let obj = {
       title,
       content,
       id,
+      currentId,
     };
 
     posts.push(obj);

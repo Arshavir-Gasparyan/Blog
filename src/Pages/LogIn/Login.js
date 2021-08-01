@@ -1,5 +1,6 @@
 import React from "react";
 import { TextField, Grid, Button, Container } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 export default class LogIn extends React.Component {
   static id = +localStorage.getItem("currentId") || 1;
@@ -19,13 +20,10 @@ export default class LogIn extends React.Component {
     };
   }
 
-  componentDidUpdate() {
-    // console.log(this.state.users, this.state.currentUser);
-  }
-
   createUserHandler = (name, pass) => {
     let newUsers = [...this.state.users];
     let currentUser;
+
     if (newUsers.every((user) => user.name !== name)) {
       let newUser = {
         id: LogIn.id++,
@@ -44,8 +42,10 @@ export default class LogIn extends React.Component {
         id: user.id,
       };
     }
+
     localStorage.setItem("currentId", LogIn.id);
     localStorage.setItem("users", JSON.stringify(newUsers));
+
     this.setState({
       users: newUsers,
       currentUser,
@@ -64,6 +64,7 @@ export default class LogIn extends React.Component {
       default:
         return;
     }
+
     this.setState({
       inputsValue: {
         ...this.state.inputsValue,
@@ -77,21 +78,6 @@ export default class LogIn extends React.Component {
 
     return (
       <Container maxWidth="sm">
-        {/* <h3>
-          CurrentUser
-          {this.state.currentUser
-            ? this.state.currentUser.name
-            : "not logged in"}
-        </h3>
-        <div>
-          {this.state.users.map((user) => {
-            return (
-              <h2 key={user.id}>
-                Name:{user.name} - Id:{user.id}
-              </h2>
-            );
-          })}
-        </div> */}
         <Grid
           style={{ fontSize: "30px" }}
           container
@@ -142,8 +128,12 @@ export default class LogIn extends React.Component {
             variant="outlined"
             color="primary"
           >
-            LogIn
-            {/* <Link to="CreatePage">logIn</Link> */}
+            <Link
+              style={{ textDecoration: "none", color: "white" }}
+              to="CreatePage"
+            >
+              LogIn
+            </Link>
           </Button>
         </Grid>
       </Container>

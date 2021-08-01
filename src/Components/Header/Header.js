@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./Header.Module.css";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
-import CreatePosts from "../CreatePosts/CreatePosts";
-import Blog from "../Blog/Blog";
+import CreatePosts from "../../Pages/CreatePosts/CreatePosts";
+import Blog from "../../Pages/Blog/Blog";
 import LogIn from "../../Pages/LogIn/Login";
 
 export default function Header(params) {

@@ -1,7 +1,6 @@
 import React from "react";
 import { Component } from "react";
-import Posts from "../Posts/posts";
-import style from "./Blog.Module.css";
+import Posts from "../../Components/Posts/posts";
 
 export default class Blog extends Component {
   render() {

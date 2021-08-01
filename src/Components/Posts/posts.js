@@ -1,28 +1,18 @@
 import React from "react";
-// import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { CardMedia } from "@material-ui/core";
-import { Avatar, Grid } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { IconButton } from "@material-ui/core";
-import { Container } from "@material-ui/core";
-
-// import DeleteIcon from "@material-ui/icons/Delete";
-
-// const useStyles = makeStyles({
-//   root: {
-//     width: 600,
-//     margin: 30,
-//   },
-//   media: {
-//     height: 40,
-//   },
-// });
+import {
+  CardMedia,
+  Avatar,
+  Grid,
+  IconButton,
+  Container,
+} from "@material-ui/core";
 export default class Posts extends React.Component {
   constructor(props) {
     super(props);
@@ -32,18 +22,25 @@ export default class Posts extends React.Component {
     };
   }
 
-  // const classes = useStyles();
-  // console.log(users);
-
   handleClick = (id) => {
     const newPosts = this.state.form.filter((post) => post.id !== id);
+    const deletePost = this.state.form.filter((post) => post.id === id);
+    const postCreatorId = deletePost[0].currentId;
+    const CurrentId = JSON.parse(localStorage.getItem("currentId"));
 
-    this.setState({
-      form: newPosts,
-    });
-    localStorage.setItem("form", JSON.stringify(newPosts));
-    console.log(this.state.form);
+    if (postCreatorId === CurrentId) {
+      this.setState({
+        form: newPosts,
+      });
+      localStorage.setItem("form", JSON.stringify(newPosts));
+    }
   };
+
+  learnMore = (id) => {
+    const usersPost = this.state.form.filter((post) => post.id === id);
+    localStorage.setItem("userForm", JSON.stringify(usersPost));
+  };
+
   render() {
     return (
       <>
@@ -71,7 +68,6 @@ export default class Posts extends React.Component {
                           {posts.title ? posts.title[0].toUpperCase() : null}
                         </Avatar>
                       }
-
                       <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
                           {posts.title}
@@ -94,7 +90,11 @@ export default class Posts extends React.Component {
                         <DeleteIcon fontSize="inherit" />
                       </IconButton>
                       <Grid container direction="row-reverse">
-                        <Button style={{ color: "white" }} size="small">
+                        <Button
+                          onClick={() => this.learnMore(posts.id)}
+                          style={{ color: "white" }}
+                          size="small"
+                        >
                           Learn More
                         </Button>
                       </Grid>
